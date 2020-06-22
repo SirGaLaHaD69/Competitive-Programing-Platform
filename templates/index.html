@@ -230,7 +230,7 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
+
 {% endblock %}
 {% block body_block %}
 <div class="jumbotron jumbotron-translucent" style="margin: 65px 0px 45px 0px; border-radius: 0rem!important;">
@@ -325,6 +325,10 @@
             {% for tags in x.tag.all%}
               | {{ tags }}
             {%endfor%}|
+          </p>
+          <p class="copy">Comments(
+            {{x.comments.count}}
+            )
           </p>
           <a href="{% url 'cp_app:problem_detail' pk=x.pk %}"><button style="background-color: black;" class="btn"><b style="color: white;">Explore More</b></button></a>
         </div>

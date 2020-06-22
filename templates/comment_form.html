@@ -6,7 +6,7 @@
 <form class="post-form" method="POST">
     {% csrf_token %}
     {% bootstrap_form form %}
-    <button type="submit" class="save btn btn-default">Post Comment</button>
+    <button type="submit" style="font-size: 1.5em;background-color: #d6e00b;color:black;" class="btn btn-primary btn-comment">Post Comment</button>
 </form>
 <script>
     var editor=new MediumEditor('.editable');
