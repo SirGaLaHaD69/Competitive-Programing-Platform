@@ -19,7 +19,7 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('text',)
 
-
+        
 # class SearchForm(forms.Form):
 #     tag = forms.CharField(required=False,widget=forms.TextInput(attrs={'autocomplete': 'off'}) )
 #     rating =forms.IntegerField(required=False,widget=forms.TextInput(attrs={'autocomplete': 'off'}))

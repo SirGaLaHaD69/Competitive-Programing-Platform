@@ -34,21 +34,19 @@ class Problem(models.Model):
     rating=models.PositiveIntegerField()
     link=models.URLField(max_length=100)
     reviewed=models.BooleanField()
-    def __str__(self):
-        return self.title;
-
     def count_rev():
         counts=0
-        q1=Problem.objects.all();
+        q1=Problem.objects.all()
         for x in q1:
             if x.reviewed==True:
                 counts+=1
         return counts
+    def __str__(self):
+        return self.title
 class Comment(models.Model):
     problem = models.ForeignKey(Problem,related_name='comments',on_delete= models.CASCADE)
     user = models.ForeignKey(User,related_name="comments",on_delete=models.CASCADE)
     text = models.TextField()
     create_date = models.DateTimeField(auto_now = True)
-
     def __str__(self):
         return self.text

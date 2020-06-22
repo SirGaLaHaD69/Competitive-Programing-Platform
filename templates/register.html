@@ -2,6 +2,11 @@
 {% extends 'base.html' %}
 {% block title %}Register{% endblock %}
 {% block links_n_scripts %}
+<style>
+  .b1{
+    background-color: black;
+  }
+</style>
 {{ user_form.media }}
 {{ profile_form.media }}
 {% endblock %}
@@ -13,9 +18,9 @@
   {% else %}
     <form enctype="multipart/form-data" method="post" action="{% url 'cp_app:register' %}">
       {% csrf_token %}
-      <h1 align="center">Register</h1>
+      <h1 align="center"><b style="color: #c91044;">Register</b></h1>
       <hr>
-      <div align="center" style="color: white;">
+      <div align="center" style="color: #c91044;">
       Those marked with * are required to be filled.
       </div>
       <br>
@@ -30,7 +35,7 @@
       <br>
       <div class="form-group">
         <input type="text" name="username" maxlength="150" class="form-control textbox-translucent" placeholder="Username *" title="Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only." required id="id_username">
-        <small class="form-text text-muted" style="color: white!important;">150 characters or fewer. Letters, digits and @/./+/-/_ only.</small>
+        <small class="form-text text-muted" style="color: #c91044!important;">150 characters or fewer. Letters, digits and @/./+/-/_ only.</small>
       </div>
       <div class="form-group">
         <input type="email" name="email" maxlength="254" class="form-control textbox-translucent" placeholder="Email address *" title="" id="id_email">
@@ -39,7 +44,7 @@
         <input type="password" name="password" class="form-control textbox-translucent" placeholder="Password *" title="" required id="id_password">
       </div>
       <div class="form-group">
-        <label for="id_profile_pic" style="color: white;">Profile pic</label>
+        <label for="id_profile_pic" style="color: #c91044;">Profile pic</label>
         <div class="row bootstrap4-multi-input">
           <div class="col-12">
             <input type="file" name="profile_pic" accept="image/*" class="" title="" id="id_profile_pic">
@@ -47,7 +52,7 @@
         </div>
       </div>
       <div class="col-md text-center">
-        <input class='btn btn-lg btn-primary button-translucent' type='submit' value="Register"></input>
+        <a class="btn btn-lg btn-primary button-translucent b1" type="submit"><b style="color: #c91044;">Register</b></a>
       </div>
     </form>
   {% endif %}

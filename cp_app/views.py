@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from django.shortcuts import get_object_or_404,redirect
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 
 from django.views.generic import DetailView
@@ -12,9 +12,10 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate,login,logout
 from django.forms import formset_factory
 from cp_app.models import UserProfileInfo,Problem,Tag,Author,Comment
-from cp_app.forms import UserForm, UserProfileInfoForm,CommentForm
+from cp_app.forms import UserForm,CommentForm, UserProfileInfoForm
 import random
 import datetime
+from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (TemplateView,ListView,
                                   DetailView,CreateView,
@@ -102,8 +103,8 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileInfoForm()
     return render(request,'register.html',{'registered':registered,'user_form':user_form,'profile_form':profile_form})
-def discuss(request):
-    return render(request,'discuss.html')
+# def discuss(request):
+#     return render(request,'discuss.html')
 def home(request):
     return render(request,'home.html')
 def user_login(request):
@@ -134,7 +135,7 @@ def user_logout(request):
 class ProblemDetailView(DetailView,LoginRequiredMixin):
     model = Problem
     login_url = '/cp_app/login/'
-    redirect_field_name = 'login.html'
+    redirect_field_name='login.html'
     #check
 
 @login_required
@@ -145,7 +146,7 @@ def add_comment_to_problem(request, pk):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.problem = problem
-            comment.user = request.user
+            comment.user=request.user
             comment.save()
             return redirect('cp_app:problem_detail', pk=problem.pk)
     else:

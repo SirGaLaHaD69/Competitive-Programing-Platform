@@ -4,6 +4,14 @@
 {% block title %}Login{% endblock %}
 {% block login %}{% endblock %}
 {% block links_n_scripts %}
+  <style>
+    .b1{
+      background-color: black;
+    }
+    .b1:hover{
+      background-color: #c91044;
+    }
+  </style>
   {% load bootstrap4 %}
   {% bootstrap_css %}
   {% bootstrap_javascript jquery='full' %}
@@ -21,9 +29,9 @@
       <form action="{% url 'cp_app:user_login' %}" method="post">
         {% csrf_token %}
 
-        <h1 align="center">Login</h1>
+        <h1 align="center"><b style="color: #c91044;">Login</b></h1>
         <hr>
-        <div align="center" style="color: white;">
+        <div align="center" style="color: #c91044;">
         Welcome! Login and Practice !.
         </div>
         <br>
@@ -36,12 +44,12 @@
         </div>
         <br>
         <div class="col-md text-center">
-          <button class="btn btn-lg btn-primary button-translucent" type="submit">CONTINUE <i class="fas fa-arrow-circle-right"></i></button>
+          <button style="color: #c91044;" class="btn btn-lg btn-primary button-translucent b1" type="submit">CONTINUE <i class="fas fa-arrow-circle-right"></i></button>
         </div>
       </form>
       <br>
       <div style="color: white;">
-      <small>Not a member yet? Click <a href="{% url 'cp_app:register' %}">here</a> to register.</small>
+      <small>Not a member yet? Click <a style="color: #c91044;" href="{% url 'cp_app:register' %}">here</a> to register.</small>
       </div>
     </div>
   </div>

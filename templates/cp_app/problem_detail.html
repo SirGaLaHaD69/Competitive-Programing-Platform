@@ -4,68 +4,325 @@
 {% block title %}Problem Detail{% endblock %}
 {% block index %}{% endblock %}
 {% block links_n_scripts %}
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        font-family: 'Open Sans', sans-serif;
+        font: normal 13px sans-serif;
+        background-color: rgb(14, 35, 44);
+    }
+
+
+
+    .comment-section {
+        list-style: none;
+        max-width: 800px;
+        width: 100%;
+        margin: 50px auto;
+        padding: 10px;
+    }
+
+    .comment {
+        display: flex;
+        border-radius: 3px;
+        margin-bottom: 45px;
+        flex-wrap: wrap;
+    }
+
+    .comment.user-comment {
+        color:  #dadada;
+    }
+
+    .comment.author-comment {
+        color:  #dadada;
+        justify-content: flex-end;
+    }
+
+    /* User and time info */
+
+    .comment .info {
+        width: 17%;
+    }
+
+    .comment.user-comment .info {
+        text-align: right;
+    }
+
+    .comment.author-comment .info {
+        order: 3;
+    }
+
+
+    .comment .info a {	/* User name */
+        display: block;
+        text-decoration: none;
+        color: #656c71;
+        font-weight: bold;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 10px 0 3px 0;
+    }
+
+    .comment .info span {	/* Time */
+        font-size: 11px;
+        color:  #9ca7af;
+    }
+
+
+    /* The user avatar */
+
+    .comment .avatar {
+        width: 8%;
+    }
+
+    .comment.user-comment .avatar {
+        padding: 10px 18px 0 3px;
+    }
+
+    .comment.author-comment .avatar {
+        order: 2;
+        padding: 10px 3px 0 18px;
+    }
+
+    .comment .avatar img {
+        display: block;
+        border-radius: 50%;
+    }
+
+    .comment.user-comment .avatar img {
+        float: right;
+    }
+
+
+
+
+
+    /* The comment text */
+
+    .comment p {
+        line-height: 1.5;
+        padding: 18px 22px;
+        width: 50%;
+        position: relative;
+        word-wrap: break-word;
+    }
+
+    .comment.user-comment p {
+        background-color:  #0992aa;
+    }
+
+    .comment.author-comment p {
+        background-color:  #970a40;
+        order: 1;
+    }
+
+    /* Signifies author has responded to post */
+
+    .author-comment p:after {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        border: 2px solid #e2f8ff;
+        right: -8px;
+        top: 18px;
+    }
+
+
+
+
+    /* Comment form */
+
+    .write-new {
+        margin: 80px auto 0;
+        width: 50%;
+    }
+
+    .write-new textarea {
+        color:  #444;
+        font: inherit;
+
+        outline: 0;
+        border-radius: 3px;
+        border: 1px solid #cecece;
+        background-color:  #fefefe;
+        box-shadow: 1px 2px 1px 0 rgba(0, 0, 0, 0.06);
+        overflow: auto;
+
+        width:100%;
+        min-height: 80px;
+        padding: 15px 20px;
+    }
+
+    .write-new img {
+        border-radius: 50%;
+        margin-top: 15px;
+    }
+
+    .write-new button {
+        float:right;
+        background-color:  #729bbb;
+        box-shadow: 1px 2px 1px 0 rgba(0, 0, 0, 0.12);
+        border-radius: 2px;
+        border: 0;
+        color: #ffffff;
+        font-weight: bold;
+        cursor: pointer;
+
+        padding: 10px 25px;
+        margin-top: 18px;
+    }
+
+
+
+    /* Responsive styles */
+
+    @media (max-width: 800px) {
+        /* Make the paragraph in the comments take up the whole width,
+        forcing the avatar and user info to wrap to the next line*/
+        .comment p{
+            width: 100%;
+        }
+
+        /* Reverse the order of elements in the user comments,
+        so that the avatar and info appear after the text. */
+        .comment.user-comment .info {
+            order: 3;
+            text-align: left;
+        }
+
+        .comment.user-comment .avatar {
+            order: 2;
+        }
+
+        .comment.user-comment p {
+            order: 1;
+        }
+
+
+        /* Align toward the beginning of the container
+        all the elements inside the author comments. */
+        .comment.author-comment {
+            justify-content: flex-start;
+        }
+
+
+        .comment-section {
+            margin-top: 10px;
+        }
+
+        .comment .info {
+            width: auto;
+        }
+
+        .comment .info a {
+            padding-top: 15px;
+        }
+
+        .comment.user-comment .avatar,
+        .comment.author-comment .avatar {
+            padding: 15px 10px 0 18px;
+            width: auto;
+        }
+
+        .comment.user-comment p:after,
+        .comment.author-comment p:after {
+            width: 12px;
+            height: 12px;
+            top: initial;
+            left: 28px;
+            bottom: -6px;
+        }
+
+        .write-new {
+            width: 100%;
+        }
+    }
+  </style>
   {% load bootstrap4 %}
   {% bootstrap_css %}
   {% bootstrap_javascript jquery='full' %}
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+  
 {% endblock %}
 {% block body_block %}
 
-<div class="jumbotron jumbotron-translucent" style="margin: 10px 0px; box-shadow: none;border-radius: 0rem!important;">
+<br><br>
+<div class="container" style="margin: 10px 0px; box-shadow: none;border-radius: 0rem!important;background-color: #aae7f0;">
+  <br>
+  <h1 style="text-align: center;"><b style="color: #0a0338;font-size: 2em;">{{ problem.title }}</b></h1><br><br><br><br>
     <div class="row">
       <div class="col-lg-8">
-        {% if object.author %}
-        <img src='{{problems.author.author_pic.url}}' style='height:50% ;width:50%;'alt="">
+        {% if problem.author %}
+        <img src='{{problem.author.author_pic.url}}' style='height:70% ;width:60%;'alt="">
         {%endif%}
-        <h1>{{ object.title }}</h1>
+        <br><br>
       </div>
       <div class="col-lg-4">
-        <h3>Tags:</h3>
+        <h3><b style="color: #0a0338;">Tags:</b></h3>
           {% for tags in problem.tag.all%}
-          <button class="btn btn-warning tag_all" style="color:white;"><b>{{ tags }}</b></button>
+          <button class="btn btn-warning tag_all" style="color:#0a0338;"><b>{{ tags }}</b></button>
           {%endfor%}
+          <br><br>
+      </div>
+    </div>
+  </div><br><br><br>
+ 
+   <h2>Rating : {{problem.rating}}</h2>
+    <br>
 
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h1>{{ problem.description}}</h4>
-      </div>
-    </div>
+    <h2>{{problem.description}}</h2>
+
     <br>
-    <div class="row">
-      <div class="col">
-        <h4> {{ problem.rating}}</h4>
-      </div>
-    </div>
+    
+    
+    <h2>Link to the problem: <a style="color: white;" href="{{problem.link}}"> {{problem.link}} </a></h2>
     <br>
-    <div class="row">
-      <div class="col">
-        <h4> <a href="{{problems.link}}">{{ problem.link}}</a></h4>
-      </div>
-    </div>
-  </div>
 
   <hr>
-<a class="btn btn-primary btn-comment" href="{% url 'cp_app:add_comment_to_problem' pk=problem.pk %}">Add Comment</a>
 
-<div class="container">
-    {% for comment in problem.comments.all %}
-    <br>
-    {% if user.is_authenticated %}
-        {{comment.create_date}}
-        {% if comment.user == user and not hide_delete %}
-        <a class="btn btn-primary" href="{% url 'cp_app:comment_remove' pk=comment.pk %}">
-            <span class="fa fa-remove"></span>
-        </a>
-        {% endif %}
-        <p>{{comment.text|safe|linebreaks}}</p>
-        <p>Posted By: {{comment.user}}</p>
-    {% endif %}
-    {% endfor %}
-</div>
 
+  <section class="comment-section">
+
+  <div class="container">
+      {% for comment in problem.comments.all %}
+      <br>
+      {% if user.is_authenticated %}
+
+            <div class="comment user-comment">
+              <div class="info">
+                  <a style="font-size: 1em;">{{comment.user}}</a>
+                  <span style="font-size: 1em;">{{comment.create_date}}</span>
+              </div>
+      
+              <a class="avatar">
+                  <img src="http://i63.tinypic.com/2r3ec1t.png" width="35" alt="Profile Avatar" title="Amanda Quick" />
+              </a>
+              <div class="alert alert-success">
+                <strong>{{comment.text}}</strong>
+              </div><hr>
+              {% if comment.user == user %}
+                <a style="font-size: 0.9em;border-radius: 10px;width: 8%;height: 6%;" href="{% url 'cp_app:comment_remove' pk=comment.pk %}">
+                  <button  class="btn btn-small btn-warning">Remove</button>
+                </a>
+              {% endif %}
+          </div>
+          
+      {% endif %}
+      {% endfor %}
+  </div>
+  <br><br>
+  <a style="font-size: 1.5em;background-color: #d6e00b;color:black;" class="btn btn-primary btn-comment" href="{% url 'cp_app:add_comment_to_problem' pk=problem.pk %}">Add Comment</a>
+  <br>
+</section>
 {% endblock %}
