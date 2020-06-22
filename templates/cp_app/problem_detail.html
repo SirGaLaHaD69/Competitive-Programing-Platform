@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Problem Detail{% endblock %}
+{% block index %}{% endblock %}
+{% block links_n_scripts %}
+  {% load bootstrap4 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript jquery='full' %}
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+{% endblock %}
+{% block body_block %}
+
+<div class="jumbotron jumbotron-translucent" style="margin: 10px 0px; box-shadow: none;border-radius: 0rem!important;">
+    <div class="row">
+      <div class="col-lg-8">
+        {% if object.author %}
+        <img src='{{problems.author.author_pic.url}}' style='height:50% ;width:50%;'alt="">
+        {%endif%}
+        <h1>{{ object.title }}</h1>
+      </div>
+      <div class="col-lg-4">
+        <h3>Tags:</h3>
+          {% for tags in problem.tag.all%}
+          <button class="btn btn-warning tag_all" style="color:white;"><b>{{ tags }}</b></button>
+          {%endfor%}
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h1>{{ problem.description}}</h4>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col">
+        <h4> {{ problem.rating}}</h4>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col">
+        <h4> <a href="{{problems.link}}">{{ problem.link}}</a></h4>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+<a class="btn btn-primary btn-comment" href="{% url 'cp_app:add_comment_to_problem' pk=problem.pk %}">Add Comment</a>
+
+<div class="container">
+    {% for comment in problem.comments.all %}
+    <br>
+    {% if user.is_authenticated %}
+        {{comment.create_date}}
+        {% if comment.user == user and not hide_delete %}
+        <a class="btn btn-primary" href="{% url 'cp_app:comment_remove' pk=comment.pk %}">
+            <span class="fa fa-remove"></span>
+        </a>
+        {% endif %}
+        <p>{{comment.text|safe|linebreaks}}</p>
+        <p>Posted By: {{comment.user}}</p>
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

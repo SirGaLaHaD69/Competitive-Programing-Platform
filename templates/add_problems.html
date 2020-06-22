@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Add Problems{% endblock %}
+{% block index %}{% endblock %}
+{% block links_n_scripts %}
+  {% load bootstrap4 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript jquery='full' %}
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endblock %}
+{% block body_block %}
+<div class="jumbotron jumbotron-translucent" style="margin: 65px 0px 45px 0px; border-radius: 0rem!important;">
+  <form method="post">
+    {% csrf_token %}
+    <h1 style="align:center;">Add Problems</h1>
+    <hr>
+    <br>
+    <div class="row">
+                  <div class="col-lg-6 col-sm-6">
+                    <div class="col form-group">
+                      <h6><b>Enter Problem Title: </b></h6>
+                      <input type="text" name="title_query" autocomplete="off" class="form-control textbox-translucent" placeholder="type problem name" >
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-sm-6">
+                    <div class="col form-group">
+                      <h6><b>Add Platform:</b></h6>
+                      <input list="authors" type="search" name="author_query" autocomplete="off" class="form-control textbox-translucent"  >
+                      <datalist id="authors">
+                      {% for c in authors %}
+                      <option value="{{c.name}}">{{c.name}}</option>
+                      {% endfor %}
+                      </datalist>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-sm-6">
+                    <div class="col form-group">
+                      <h6><b>Add Rating: </b></h6>
+                      <input  type="text" name="rating_query" autocomplete="off" class="form-control textbox-translucent" >
+                    </div>
+                  </div>
+
+                    <div class="col-lg-6 col-sm-6">
+                      <div class="col form-group">
+                        <h6><b>Add description: </b></h6>
+                      <textarea name="descript" rows="8" cols="65"></textarea>
+                  </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                      <div class="col form-group">
+                        <h6><b>Add link: </b></h6>
+                        <input  type="text" name="link_query" autocomplete="off" class="form-control textbox-translucent" >
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                      <div class="col form-group">
+                        <h6><b>Add Tags: </b></h6>
+
+                         <select list='tags' multiple class="form-control" name='tag_list'>
+                         <datalist id="tags">
+                         {% for c in tags %}
+                         <option value="{{c.name}}">{{c.name}}</option>
+                         {% endfor %}
+                         </datalist>
+
+                       </select>
+                       </div>
+                    </div>
+    </div>
+      <br>
+      <button onclick="showAlert()" class="btn btn-primary button-translucent" type="submit"><i class="fas fa-chevron-right"></i> ADD</button>
+
+  </form>
+</div>
+<script>
+function showAlert(){
+  var s="PROBLEM ADDED.\nYour Problem is waiting for the Admin's Approval.\nIt will be Posted once it is Approved";
+  alert(s);
+}
+
+</script>
+{%endblock%}
