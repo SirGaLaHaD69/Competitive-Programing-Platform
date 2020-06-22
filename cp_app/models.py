@@ -26,14 +26,6 @@ class Problem(models.Model):
     description=models.CharField(max_length=10000)
     rating=models.PositiveIntegerField()
     link=models.URLField(max_length=100)
-    reviewed=models.BooleanField()
+    # reviewed=models.BooleanField()
     def __str__(self):
         return self.title;
-
-    def count_rev():
-        counts=0
-        q1=Problem.objects.all();
-        for x in q1:
-            if x.reviewed==True:
-                counts+=1
-        return counts

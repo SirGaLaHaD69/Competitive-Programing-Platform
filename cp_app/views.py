@@ -23,36 +23,15 @@ def is_valid_queryparam(param):
     return param != '' and param is not None
 
 # Create your views here.
-@login_required
-def add_problems(request):
-    a1=Author.objects.all()
-    t1=Tag.objects.all()
-    if request.method=='POST':
-        print(request.POST)
-        Title=request.POST.get('title_query')
-        Auth=request.POST.get('author_query')
-        Rat=request.POST.get('rating_query')
-        desc=request.POST.get('descript')
-        Link=request.POST.get('link_query')
-        tag_def=request.POST.getlist('tag_list')
-        verified_auth=Author.objects.filter(name__iexact=Auth)
-        verified_auth= verified_auth[0]
-        p1=Problem(
-        title=Title,
-        author=verified_auth,
-        rating=int(Rat),
-        description=desc,
-        link=Link,
-        reviewed=False,
-        )
-        p1.save()
-        for x in tag_def:
-            tn=Tag.objects.filter(name__iexact=x)
-            tn=tn[0]
-            p1.tag.add(tn)
-        p1.save()
+# @login_required
+# def add_problems(request):
+#     name=request.GET.get('title_of_problem')
+#     author=request.GET.get('author')
+#     rating=request.GET.get('rating')
+#     desc=request.GET.get('description')
+#     link=request.GET.get('link')
+#     tag='Stack'
 
-    return render(request,'add_problems.html',{ 'authors':a1,'tags':t1})
 @login_required
 def index(request):
     # form = SearchForm()
@@ -83,7 +62,6 @@ def index(request):
 def register(request):
     registered = False
     if request.method == "POST":
-        print(request.POST)
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileInfoForm(data=request.POST)
         if user_form.is_valid() and profile_form.is_valid():

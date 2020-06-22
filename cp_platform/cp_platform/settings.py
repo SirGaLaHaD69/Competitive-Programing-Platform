@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cp_app',
     'bootstrap4',
-    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +58,7 @@ ROOT_URLCONF = 'cp_platform.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,4 +126,5 @@ STATICFILES_DIRS = [STATIC_DIR,]
 
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
-LOGIN_URL = '/user_login'
+
+# LOGIN_URL = '/user_login'

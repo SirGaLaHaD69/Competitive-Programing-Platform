@@ -3,7 +3,7 @@
   {% load static %}
   <head>
     <meta charset="utf-8">
-    <title>{% block title %}{% endblock %} | CODE MIRROR</title>
+    <title>{% block title %}{% endblock %} | CP</title>
    <link rel="icon" href="{% static 'images/nitr.jpg' %}" type="image/ico">
     <link rel="stylesheet" href={% static 'css/master.css' %}>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -14,7 +14,7 @@
   <body style="background-image: url({% static 'images/bg2.jpg' %}); background-size: cover; background-attachment: fixed;">
     {% block home %}
     <nav class="navbar navbar-expand-lg navbar-dark nav-dark-translucent fixed-top">
-      <a class="navbar-brand navbar-left" href="{%url 'home'%}"><img class ='img-responsive' src={% static 'images/icon.png' %} style="margin-bottom: 5px;"><I> CODE MIRROR</I></a>
+      <a class="navbar-brand navbar-left" href="{%url 'home'%}"><img class ='img-responsive' src={% static 'images/icon.png' %} style="margin-bottom: 5px;"> NITR Travels</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -24,10 +24,7 @@
             <a class="nav-link" href="{% url 'index' %}"><i class="fas fa-home"></i> PROBLEM-SET</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'cp_app:discuss' %}"><i class="fa fa-users" aria-hidden="true"></i> DISCUSS</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'cp_app:add' %}"><i class="fas fa-plus"></i> ADD PROBLEMS</a>
+            <a class="nav-link" href="{% url 'cp_app:discuss' %}"><i class="fas fa-home"></i>DISCUSS</a>
           </li>
         </ul>
         <ul class="navbar-nav">
