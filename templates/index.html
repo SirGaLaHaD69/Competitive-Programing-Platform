@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Search Flights{% endblock %}
+{% block title %}Search Problems{% endblock %}
 {% block index %}{% endblock %}
 {% block links_n_scripts %}
   {% load bootstrap4 %}
@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
 {% endblock %}
 {% block body_block %}
 <div class="jumbotron jumbotron-translucent" style="margin: 65px 0px 45px 0px; border-radius: 0rem!important;">
@@ -88,6 +89,7 @@
   <h4 style="text-align: center"><b>{{ problems.count }} available problems.</b></h4>
   {% endif %}
   {% for x in problems %}
+  {% if x.reviewed %}
     <div class="jumbotron jumbotron-translucent" style="margin: 10px 0px; box-shadow: none;border-radius: 0rem!important;">
       <div class="row">
         <div class="col-lg-8">
@@ -122,7 +124,13 @@
         </div>
       </div>
     </div>
-  {% endfor %}
+    {% else %}
+    <div class="jumbotron jumbotron-translucent" style="margin: 10px 0px; box-shadow: none;border-radius: 0rem!important;">
+      <h3>Content Not Available.<br>Waiting for Admin's Approval</h3>
+    </div>
+  {%endif%}
+
+{% endfor %}
 {% else %}
   <h1 style="color: #efefef;">NO problems</h1>
 {% endif %}
