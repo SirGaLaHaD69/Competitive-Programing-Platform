@@ -6,11 +6,11 @@ It contains a collection of questions gathered from popular competitive programi
 like Codeforces , Hackerrank, Hackerearth , Codechef , Spoj etc.
 
 
-1.You can Search and find Problems of any type which you want
+- 1.You can Search and find Problems of any type which you want
   like questions on 'Stack','Queue','Dynamic Programing' and many more from all the websites.
-2.Each Problem has a brief Descrption and link to the original Problem attached to it.
+- 2.Each Problem has a brief Descrption and link to the original Problem attached to it.
   Click on the link to solve the question on its platform.
-3.You can sort the problems on its difficulty level too.
+- 3.You can sort the problems on its difficulty level too.
  
  
 There's a special feature which lets you add problems on the platform which are not 
